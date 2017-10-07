@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "487196750144",
+    "firebase_url": "https://toyota-64ff6.firebaseio.com",
+    "project_id": "toyota-64ff6",
+    "storage_bucket": "toyota-64ff6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487196750144:android:dcc2730900f875d6",
+        "android_client_info": {
+          "package_name": "com.example.jesusizquierdo.toyota"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487196750144-uuccg7te8shbbnqisp4hfd3eio59d2ej.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jesusizquierdo.toyota",
+            "certificate_hash": "a03c0ef7c6084e66f073d69d38599aed615f4fbe"
+          }
+        },
+        {
+          "client_id": "487196750144-322vrcdo9mg1rscs3055sdkljjtp71s1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPqOQK9fK-n2yzBXAVMwQM-P9jO_cDSAs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "487196750144-322vrcdo9mg1rscs3055sdkljjtp71s1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
