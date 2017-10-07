@@ -356,7 +356,6 @@ public class LoginActivity extends AppCompatActivity {
     public void saveInformation(String userFirstName,String userLastName) {
 
         FirebaseUser user = mAuth.getCurrentUser();
-
         if (user != null) {
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
            // User newUser = new User(userFirstName,userLastName,mAuth.getCurrentUser().getEmail(),user.getUid());
