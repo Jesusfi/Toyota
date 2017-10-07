@@ -96,6 +96,15 @@ public class LoginActivity extends AppCompatActivity  {
         signInButton = (SignInButton) findViewById(R.id.btn_google_signin);
         mCallbackManager = CallbackManager.Factory.create();
         LoginButton loginButton = (LoginButton) findViewById(R.id.btn_facebook);
+
+        TextView notSignedUp = (TextView) findViewById(R.id.tv_sign_up);
+        notSignedUp.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+            }
+        });
+
         loginButton.setReadPermissions("email", "public_profile");
         loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
