@@ -20,7 +20,13 @@ public class MainActivity extends AppCompatActivity {
         final FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
-
+        Button maps = (Button) findViewById(R.id.find_dealer);
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+            }
+        });
         Button signOut = (Button) findViewById(R.id.btn_sign_out);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
