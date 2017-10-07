@@ -58,6 +58,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.facebook.FacebookSdk;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -70,8 +72,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity  {
-
+public class LoginActivity extends AppCompatActivity {
 
 
     // UI references.
@@ -100,22 +101,21 @@ public class LoginActivity extends AppCompatActivity  {
         loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-              //  Log.d(TAG, "facebook:onSuccess:" + loginResult);
+                //  Log.d(TAG, "facebook:onSuccess:" + loginResult);
                 isFaacebook = true;
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
             @Override
             public void onCancel() {
-          //      Log.d(TAG, "facebook:onCancel");
+                //      Log.d(TAG, "facebook:onCancel");
                 // ...
             }
 
-          
 
             @Override
             public void onError(FacebookException error) {
-          //      Log.d(TAG, "facebook:onError", error);
+                //      Log.d(TAG, "facebook:onError", error);
                 // ...
             }
         });
@@ -133,15 +133,14 @@ public class LoginActivity extends AppCompatActivity  {
                 .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
                     @Override
                     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                        Toast.makeText(LoginActivity.this, " Text ",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, " Text ", Toast.LENGTH_SHORT).show();
                     }
-                }).addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+                }).addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
 
-
-        if(mAuth.getCurrentUser() != null){
-            startActivity(new Intent(this,MainActivity.class));
+        if (mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         }
         // Set up the login form.
@@ -209,10 +208,10 @@ public class LoginActivity extends AppCompatActivity  {
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                          //  Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            //  Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                           // updateUI(null);
+                            // updateUI(null);
                         }
 
                         // ...
@@ -240,7 +239,7 @@ public class LoginActivity extends AppCompatActivity  {
                 // Google Sign In failed, update UI appropriately
                 // ...
             }
-        }else{
+        } else {
             mCallbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
@@ -256,14 +255,14 @@ public class LoginActivity extends AppCompatActivity  {
                             // Sign in success, update UI with the signed-in user's information
 
                             FirebaseUser user = mAuth.getCurrentUser();
-                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                         //   updateUI(user);
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            //   updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
 
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                           // updateUI(null);
+                            // updateUI(null);
                         }
 
                         // ...
@@ -318,7 +317,7 @@ public class LoginActivity extends AppCompatActivity  {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
 
-        userLogin(email,password);
+            userLogin(email, password);
         }
     }
 
@@ -330,23 +329,23 @@ public class LoginActivity extends AppCompatActivity  {
         return password.length() > 4;
     }
 
-    public void userLogin(String email, String password){
+    public void userLogin(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                       // Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+                        // Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
 
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                          //  Log.w(TAG, "signInWithEmail:failed", task.getException());
+                            //  Log.w(TAG, "signInWithEmail:failed", task.getException());
                             Toast.makeText(LoginActivity.this, "Login failed",
                                     Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(LoginActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
                         }
 
@@ -354,17 +353,22 @@ public class LoginActivity extends AppCompatActivity  {
                     }
                 });
     }
+    public void saveInformation(String userFirstName,String userLastName) {
 
+        FirebaseUser user = mAuth.getCurrentUser();
 
+        if (user != null) {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+           // User newUser = new User(userFirstName,userLastName,mAuth.getCurrentUser().getEmail(),user.getUid());
+            //databaseReference.child("Users").child(user.getUid()).setValue(newUser);
+            Toast.makeText(LoginActivity.this, "Information saved", Toast.LENGTH_SHORT).show();
 
+        }else{
 
+            Toast.makeText(LoginActivity.this,"Failed to save any information",Toast.LENGTH_SHORT).show();
+        }
 
-
-
-
-
-
-
+    }
 
 }
 
