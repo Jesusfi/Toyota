@@ -33,6 +33,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jesusizquierdo.toyota.classes.SimpleProfile;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -58,6 +59,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.facebook.FacebookSdk;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -212,7 +215,8 @@ public class LoginActivity extends AppCompatActivity  {
                             // Sign in success, update UI with the signed-in user's information
                             //Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-
+                            saveUserInformationFacebook();
+                            Toast.makeText(LoginActivity.this,user.getDisplayName(),Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
                             //updateUI(user);
@@ -265,6 +269,8 @@ public class LoginActivity extends AppCompatActivity  {
                             // Sign in success, update UI with the signed-in user's information
 
                             FirebaseUser user = mAuth.getCurrentUser();
+                            saveUserInformationGoogle();
+                            Toast.makeText(LoginActivity.this,user.getDisplayName(),Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this,MainActivity.class));
                          //   updateUI(user);
                         } else {
@@ -362,6 +368,35 @@ public class LoginActivity extends AppCompatActivity  {
                         // ...
                     }
                 });
+    }
+
+    public void saveUserInformationFacebook( ){
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if (user != null) {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            SimpleProfile simpleProfile = new SimpleProfile(user.getEmail(),user.getUid(),user.getDisplayName());
+            databaseReference.child("Profile").child(user.getUid()).setValue(simpleProfile);
+            //Toast.makeText(LoginActivity.this, "Information saved", Toast.LENGTH_SHORT).show();
+
+        }else{
+
+            Toast.makeText(LoginActivity.this,"Failed to save any information",Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void saveUserInformationGoogle( ){
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if (user != null) {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            SimpleProfile simpleProfile = new SimpleProfile(user.getEmail(),user.getUid(),user.getDisplayName());
+            databaseReference.child("Profile").child(user.getUid()).setValue(simpleProfile);
+            //Toast.makeText(LoginActivity.this, "Information saved", Toast.LENGTH_SHORT).show();
+
+        }else{
+
+            Toast.makeText(LoginActivity.this,"Failed to save any information",Toast.LENGTH_SHORT).show();
+        }
     }
 
 

@@ -7,10 +7,12 @@ package com.example.jesusizquierdo.toyota.classes;
 public class SimpleProfile {
     String email ;
     String uniqueID;
+    String name;
 
-    public SimpleProfile(String email, String uniqueID) {
+    public SimpleProfile(String email, String uniqueID,String name) {
         this.email = email;
         this.uniqueID = uniqueID;
+        this.name = name;
     }
 
     public SimpleProfile() {
@@ -22,5 +24,9 @@ public class SimpleProfile {
 
     public String getUniqueID() {
         return uniqueID;
+    }
+
+    public String getName() {
+        return name;
     }
 }

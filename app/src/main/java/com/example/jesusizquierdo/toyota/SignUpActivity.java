@@ -64,6 +64,7 @@ public class SignUpActivity extends AppCompatActivity  {
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
+    private AutoCompleteTextView firstName;
     private View mProgressView;
     private View mLoginFormView;
     private FirebaseAuth mAuth;
