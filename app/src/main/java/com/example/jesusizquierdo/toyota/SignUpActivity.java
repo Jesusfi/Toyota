@@ -32,10 +32,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jesusizquierdo.toyota.classes.SimpleProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +82,7 @@ public class SignUpActivity extends AppCompatActivity  {
         mAuth = FirebaseAuth.getInstance();
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        firstName = (AutoCompleteTextView) findViewById(R.id.firstName);
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -113,13 +118,21 @@ public class SignUpActivity extends AppCompatActivity  {
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
+        firstName.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String email = mEmailView.getText().toString().trim();
+        String password = mPasswordView.getText().toString().trim();
+        String name = firstName.getText().toString().trim();
 
         boolean cancel = false;
         View focusView = null;
+
+        if(TextUtils.isEmpty(name)){
+            firstName.setError(getString(R.string.error_field_required));
+            focusView = firstName;
+            cancel = true;
+        }
 
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
@@ -147,7 +160,7 @@ public class SignUpActivity extends AppCompatActivity  {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             //showProgress(true);
-            signUp(email,password);
+            signUp(email,password,name);
 
         }
     }
@@ -162,7 +175,7 @@ public class SignUpActivity extends AppCompatActivity  {
         return password.length() > 4;
     }
 
-    public void signUp(String email, String password){
+    public void signUp(String email, String password, final String name){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -176,6 +189,7 @@ public class SignUpActivity extends AppCompatActivity  {
                             Toast.makeText(SignUpActivity.this, "What is happening",
                                     Toast.LENGTH_SHORT).show();
                         }else{
+                            saveUserInformation(name);
                             startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                             finish();
                         }
@@ -184,7 +198,20 @@ public class SignUpActivity extends AppCompatActivity  {
                     }
                 });
     }
+    public void saveUserInformation(String name){
+        FirebaseUser user = mAuth.getCurrentUser();
 
+        if (user != null) {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            SimpleProfile simpleProfile = new SimpleProfile(user.getEmail(),user.getUid(),name);
+            databaseReference.child("Profile").child(user.getUid()).setValue(simpleProfile);
+            //Toast.makeText(LoginActivity.this, "Information saved", Toast.LENGTH_SHORT).show();
+
+        }else{
+
+            Toast.makeText(SignUpActivity.this,"Failed to save any information",Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
 
