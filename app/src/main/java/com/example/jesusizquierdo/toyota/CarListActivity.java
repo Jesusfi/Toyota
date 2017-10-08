@@ -22,7 +22,7 @@ public class CarListActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     FirebaseAuth auth;
     RecyclerView recyclerView;
-
+//finished car ui
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
