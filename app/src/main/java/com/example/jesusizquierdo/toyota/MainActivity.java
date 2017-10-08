@@ -29,7 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
         greeting = (TextView) findViewById(R.id.tv_user_name);
         Button maps = (Button) findViewById(R.id.find_dealer);
+        Button build = (Button) findViewById(R.id.btn_build_car);
 
+        build.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, BuildCarAcitivty.class));
+            }
+        });
         displayUserName();
 
         maps.setOnClickListener(new View.OnClickListener() {

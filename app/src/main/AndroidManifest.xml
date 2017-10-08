@@ -41,7 +41,10 @@
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up"
-            android:parentActivityName=".LoginActivity"></activity>
+            android:parentActivityName=".LoginActivity" />
+        <activity android:name=".BuildCarAcitivty"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".CarSpecificsActivity"></activity>
     </application>
 
 </manifest>
