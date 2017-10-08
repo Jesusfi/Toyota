@@ -38,4 +38,9 @@
         android:layout_height="wrap_content"
         android:text="view builds"
         android:id="@+id/btn_view_builds"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="get nfc"
+        android:id="@+id/getnfc"/>
 </LinearLayout>

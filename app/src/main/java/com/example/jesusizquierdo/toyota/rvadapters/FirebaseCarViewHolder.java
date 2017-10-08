@@ -1,11 +1,15 @@
 package com.example.jesusizquierdo.toyota.rvadapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.jesusizquierdo.toyota.CarListActivity;
+import com.example.jesusizquierdo.toyota.Nfc;
 import com.example.jesusizquierdo.toyota.R;
 import com.example.jesusizquierdo.toyota.classes.Car;
 
@@ -29,7 +33,17 @@ public class FirebaseCarViewHolder extends RecyclerView.ViewHolder implements Vi
         TextView engine = (TextView) itemView.findViewById(R.id.tv_engine_firebaseui);
         TextView carPackage = (TextView) itemView.findViewById(R.id.tvf_package_firebaseui);
         ImageView carImage = (ImageView) itemView.findViewById(R.id.imageView_for_firebaseui);
+        Button shareNFC = (Button) itemView.findViewById(R.id.btn_share_nfc);
 
+        shareNFC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext,Nfc.class);
+                intent.putExtra("get", 1);
+                ((CarListActivity)mContext).startActivity(intent);
+                //((CarListActivity)mContext).startActivity(new Intent(mContext, Nfc.class));
+            }
+        });
         name.setText(car.getModel());
         engine.setText(car.getConfiguration());
         carPackage.setText(car.getCarPackage());
