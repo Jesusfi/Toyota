@@ -91,6 +91,12 @@
         android:id="@+id/rv_for_package"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Build my car"
+        android:id="@+id/btn_finish_build"/>
+
 
 </LinearLayout>
 </ScrollView>

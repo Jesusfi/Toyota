@@ -7,11 +7,11 @@ package com.example.jesusizquierdo.toyota.classes;
 public class Car {
     String model;
     String configuration ;
-    String color;
+    int color;
     String carPackage;
 
 
-    public Car(String model, String configuration, String color, String carPackage) {
+    public Car(String model, String configuration, int color, String carPackage) {
         this.model = model;
         this.configuration = configuration;
         this.color = color;
@@ -26,7 +26,7 @@ public class Car {
         return configuration;
     }
 
-    public String getColor() {
+    public int getColor() {
         return color;
     }
 
