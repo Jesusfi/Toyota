@@ -137,5 +137,6 @@ public class CarSpecificsActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("builds").child(user.getUid()).push();
         reference.setValue(car);
+        //this is a change real quick
     }
 }
