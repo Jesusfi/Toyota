@@ -20,6 +20,7 @@ ArrayList<Engine> engines;
     RecyclerView recyclerView, recyclerViewColor;
     EngineRVAdapter engineRVAdapter;
     ColorRvAdapter colorRvAdapter;
+    ImageView bigImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,12 @@ ArrayList<Engine> engines;
         recyclerViewColor.setLayoutManager(linearLayoutManager1);
         recyclerViewColor.setAdapter(colorRvAdapter);
 
+
+
+    }
+    public void setImage(int imageNum){
+
+        carView.setImageResource(imageNum);
 
     }
 }

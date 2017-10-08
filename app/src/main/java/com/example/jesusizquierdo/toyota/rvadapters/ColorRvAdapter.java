@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.jesusizquierdo.toyota.CarSpecificsActivity;
 import com.example.jesusizquierdo.toyota.R;
 
 import java.util.ArrayList;
@@ -46,7 +47,14 @@ public class ColorRvAdapter extends RecyclerView.Adapter<ColorRvAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
             car = (ImageView) itemView.findViewById(R.id.imageView_for_rv_color);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int num = getAdapterPosition();
 
+                    ((CarSpecificsActivity)context).setImage(color.get(num));
+                }
+            });
         }
     }
 }
