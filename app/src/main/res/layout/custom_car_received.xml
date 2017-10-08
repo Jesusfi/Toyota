@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imageView_for_car_received"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/camery_red" />
+            <TextView
+                android:id="@+id/tv_name_car_received"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="car name goes here"/>
+            <TextView
+                android:id="@+id/tv_engine_car_received"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="car engine goes here "/>
+            <TextView
+                android:id="@+id/tvf_package_car_received"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Car package goes here "/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_add_from_nfc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="add" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

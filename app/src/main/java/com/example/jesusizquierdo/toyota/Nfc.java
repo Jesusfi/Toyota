@@ -17,6 +17,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jesusizquierdo.toyota.classes.Car;
+import com.example.jesusizquierdo.toyota.dialogFragments.AddCarDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
@@ -35,10 +42,10 @@ public class Nfc extends AppCompatActivity
     NfcAdapter mNfcAdapter;
 
     String model;
-    String price;
+    String packages;
     String engine;
     int color; ;
-
+    int send;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +70,7 @@ public class Nfc extends AppCompatActivity
         sendingIndicator = (TextView) findViewById(R.id.tv_sending_indicator);
 
         Button btnAddMessage = (Button) findViewById(R.id.buttonAddMessage);
-        int send = getIntent().getIntExtra("get",0);
+         send = getIntent().getIntExtra("get",0);
         if(send ==0){
             btnAddMessage.setEnabled(false);
             btnAddMessage.setText("recieve only");
@@ -74,7 +81,7 @@ public class Nfc extends AppCompatActivity
             sendingIndicator.setText("CLICK TO SEND CAR BUILD");
 
             model = getIntent().getStringExtra("model");
-            price = getIntent().getStringExtra("price");
+            packages = getIntent().getStringExtra("package");
             engine = getIntent().getStringExtra("engine");
             color = getIntent().getIntExtra("color",0);
 
@@ -84,7 +91,7 @@ public class Nfc extends AppCompatActivity
         updateTextViews();
     }
     public void addMessage(View view) {
-        String newMessage = model +","+ price+","+engine+"," + color;
+        String newMessage = model +","+ engine+","+color+"," + packages;
         messagesToSendArray.add(newMessage);
 
         txtBoxAddMessage.setText(null);
@@ -102,7 +109,10 @@ public class Nfc extends AppCompatActivity
             for (int i = 0; i < messagesToSendArray.size(); i++) {
                 txtMessagesToSend.append(messagesToSendArray.get(i));
                 txtMessagesToSend.append("\n");
+
+
             }
+
         }
 
         txtReceivedMessages.setText("Messages Received:\n");
@@ -112,6 +122,33 @@ public class Nfc extends AppCompatActivity
                 txtReceivedMessages.append(messagesReceivedArray.get(i));
                 txtReceivedMessages.append("\n");
 
+                if(messagesReceivedArray.get(i).contains(",")){
+                    String temp = messagesReceivedArray.get(i);
+                    String[] tempArray = temp.split(",");
+                    Car car = new Car(tempArray[0],tempArray[1],Integer.parseInt(tempArray[2]),tempArray[3]);
+                    //SimpleCar simpleCar = new SimpleCar(tempArray[0],tempArray[1],tempArray[2]);
+                    //Toast.makeText(Nfc.this,"Object created : "+ simpleCar.getModel(),Toast.LENGTH_LONG).show();
+
+
+//                    Bundle args = new Bundle();
+//                    args.putString("year", simpleCar.getYear());
+//                    args.putString("model", simpleCar.getModel());
+//                    args.putString("price", simpleCar.getPrice());
+//
+//                    DialogFragment newFragment = new CarDialogfragment();
+//                    newFragment.setArguments(args);
+//                    newFragment.show(getSupportFragmentManager(), "TAG");
+
+                    Bundle args = new Bundle();
+                    args.putString("model",car.getModel());
+                    args.putString("package",car.getCarPackage());
+                    args.putString("engine", car.getConfiguration());
+                    args.putInt("color", car.getColor());
+
+                    DialogFragment dialogFragment = new AddCarDialogFragment();
+                    dialogFragment.setArguments(args);
+                    dialogFragment.show(getSupportFragmentManager(),"TAG");
+                }
                 Toast.makeText(Nfc.this, messagesReceivedArray.get(i),Toast.LENGTH_SHORT).show();
             }
         }
@@ -217,5 +254,13 @@ public class Nfc extends AppCompatActivity
         super.onResume();
         updateTextViews();
         handleNfcIntent(getIntent());
+    }
+    public void saveCar(Car car){
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("builds").child(user.getUid()).push();
+        reference.setValue(car);
+        //this is a change real quick
+        // change database
     }
 }
