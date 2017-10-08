@@ -67,7 +67,7 @@ public class Chat extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 String message = editText.getText().toString().trim();
                 sendSMS("7046122387",message);
-
+///jsut making sure it is saved on git
                 if(user.getDisplayName() != null){
                     messages.add(new Messages(user.getDisplayName(),message));
                     chatRvAdapter.notifyDataSetChanged();
