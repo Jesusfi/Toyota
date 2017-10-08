@@ -48,8 +48,9 @@
         <activity android:name=".CarSpecificsActivity" />
         <activity
             android:name=".CarListActivity"
+            android:parentActivityName=".MainActivity"
             android:label="@string/title_activity_car_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
