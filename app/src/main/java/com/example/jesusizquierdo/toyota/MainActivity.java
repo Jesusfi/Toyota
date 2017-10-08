@@ -31,6 +31,16 @@ public class MainActivity extends AppCompatActivity {
         Button maps = (Button) findViewById(R.id.find_dealer);
         Button build = (Button) findViewById(R.id.btn_build_car);
         Button viewBuilds = (Button) findViewById(R.id.btn_view_builds);
+        Button getNfc = (Button) findViewById(R.id.getnfc);
+        getNfc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,Nfc.class);
+                intent.putExtra("get", 0);
+                startActivity(intent);
+                //startActivity(new Intent(MainActivity.this, Nfc.class));
+            }
+        });
 
         viewBuilds.setOnClickListener(new View.OnClickListener() {
             @Override
