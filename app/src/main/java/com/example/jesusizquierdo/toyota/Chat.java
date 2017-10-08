@@ -75,6 +75,7 @@ public class Chat extends AppCompatActivity {
                     messages.add(new Messages(user.getEmail(),message));
                     chatRvAdapter.notifyDataSetChanged();
                 }
+                editText.setText("");
 
             }
         });
