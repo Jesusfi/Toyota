@@ -17,6 +17,10 @@ import com.example.jesusizquierdo.toyota.rvadapters.ColorRvAdapter;
 import com.example.jesusizquierdo.toyota.rvadapters.EngineRVAdapter;
 import com.example.jesusizquierdo.toyota.classes.Package;
 import com.example.jesusizquierdo.toyota.rvadapters.PackageRvAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -37,13 +41,17 @@ public class CarSpecificsActivity extends AppCompatActivity {
     int colorNumberGlobal = 0;
     String engineNameGlobal = "";
     String packageNameGlobal = "";
-
+    //firebase tools
+    FirebaseAuth firebaseAuth;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_specifics);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
 
         carView = (ImageView) findViewById(R.id.car_image_specifics);
         recyclerView = (RecyclerView) findViewById(R.id.rv_for_engines);
@@ -104,10 +112,10 @@ public class CarSpecificsActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(CarSpecificsActivity.this, "Everything looks good", Toast.LENGTH_SHORT).show();
                     Car car = new Car(carModelName,engineNameGlobal,colorNumberGlobal,packageNameGlobal);
+                    saveCar(car);
                 }
             }
         });
-
 
     }
 
@@ -124,5 +132,10 @@ public class CarSpecificsActivity extends AppCompatActivity {
     public  void setPackages(String packageName){
         packageInCard.setText(packageName);
         packageNameGlobal = packageName;
+    }
+    public void saveCar(Car car){
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        reference.child("builds").child(user.getUid()).setValue(car);
     }
 }
