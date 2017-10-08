@@ -17,4 +17,40 @@
     <string name="title_activity_sign_up">Sign in</string>
     <string name="title_activity_car_list">CarListActivity</string>
 
+    <string name="action_settings">Settings</string>
+    <string name="button_send" />
+    <string name="title_activity_sigining_up">Begin Sigining Up Process</string>
+    <string name="txtSigningUp">Please Begin the sign up process below.</string>
+    <string name="txtApplicant" />
+    <string name="txtApplicaant">Applicant Information</string>
+    <string name="txtName">Name:____________________</string>
+    <string name="txtFirst">First Name:</string>
+    <string name="txtLast">Last Name:</string>
+    <string name="txtDOB">Date Of Birth:</string>
+    <string name="txtAddress">Current Address:</string>
+    <string name="btn_Next">Next</string>
+    <string name="txtEmpolyerinfo">Empolyment Information</string>
+    <string name="txtEmpolyer">Empolyer Name:</string>
+    <string name="txtHow">Length (how long):</string>
+    <string name="txtAnnual">Annual</string>
+    <string name="txtAnnualI">Annual Income</string>
+    <string name="txtIncome">Annual Income:</string>
+    <string name="btnNext2">Next</string>
+    <string name="txtEmger">Emergency Contact</string>
+    <string name="txtContact">Emergency Contact</string>
+    <string name="txtEmerg">Emergency Contact</string>
+    <string name="txtEmgC" />
+    <string name="txtEmgCon">Emergency Contact:</string>
+    <string name="txtRela">Relationship:</string>
+    <string name="txtRname" />
+    <string name="txtrelname">First and Last Name:</string>
+    <string name="txtHome">Home Phone Number:</string>
+    <string name="btnNext3">Next</string>
+    <string name="txtCosigner">Co-Signer(if applicable):</string>
+    <string name="txtName4" />
+    <string name="txtName5">First and Name:</string>
+    <string name="txtDOB2">Date Of Birth:</string>
+    <string name="txtEm">Empolyer:</string>
+    <string name="txtEmp">Empolyers Number:</string>
+
 </resources>

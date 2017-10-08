@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.jesusizquierdo.toyota.classes.Car;
 import com.example.jesusizquierdo.toyota.classes.SimpleProfile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     TextView greeting;
-    CardView dealership, localNFC, buildCar, chat, viewBuilds;
+    CardView dealership, localNFC, buildCar, chat, viewBuilds, checkList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,14 @@ public class MainActivity extends AppCompatActivity {
         buildCar = (CardView) findViewById(R.id.cv_build_car);
         chat = (CardView) findViewById(R.id.cv_ai_chat);
         viewBuilds = (CardView) findViewById(R.id.cv_view_builds);
+        checkList = (CardView) findViewById(R.id.cv_checklist);
 
+        checkList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,Checklist.class));
+            }
+        });
 
 
         dealership.setOnClickListener(new View.OnClickListener() {
