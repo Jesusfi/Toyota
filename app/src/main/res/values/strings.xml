@@ -15,5 +15,6 @@
     </string>
     <string name="facebook_app_id">285569405265251</string>
     <string name="title_activity_sign_up">Sign in</string>
+    <string name="title_activity_car_list">CarListActivity</string>
 
 </resources>

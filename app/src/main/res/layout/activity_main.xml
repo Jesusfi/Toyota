@@ -33,4 +33,9 @@
         android:layout_height="wrap_content"
         android:text="Build a car"
         android:id="@+id/btn_build_car"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="view builds"
+        android:id="@+id/btn_view_builds"/>
 </LinearLayout>
