@@ -3,6 +3,7 @@ package com.example.jesusizquierdo.toyota;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     TextView greeting;
+    CardView dealership, localNFC, buildCar, chat, viewBuilds;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,48 +29,93 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        greeting = (TextView) findViewById(R.id.tv_user_name);
-        Button maps = (Button) findViewById(R.id.find_dealer);
-        Button build = (Button) findViewById(R.id.btn_build_car);
-        Button viewBuilds = (Button) findViewById(R.id.btn_view_builds);
-        Button getNfc = (Button) findViewById(R.id.getnfc);
-        Button aiChat = (Button) findViewById(R.id.ai_chat);
-        aiChat.setOnClickListener(new View.OnClickListener() {
+
+        dealership = (CardView) findViewById(R.id.cv_find_dealer);
+        localNFC = (CardView) findViewById(R.id.cv_get_local_build);
+        buildCar = (CardView) findViewById(R.id.cv_build_car);
+        chat = (CardView) findViewById(R.id.cv_ai_chat);
+        viewBuilds = (CardView) findViewById(R.id.cv_view_builds);
+
+
+
+        dealership.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,Chat.class));
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+
             }
         });
-        getNfc.setOnClickListener(new View.OnClickListener() {
+        localNFC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,Nfc.class);
                 intent.putExtra("get", 0);
                 startActivity(intent);
-                //startActivity(new Intent(MainActivity.this, Nfc.class));
             }
         });
+        buildCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, BuildCarAcitivty.class));
+            }
+        });
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,Chat.class));
 
+            }
+        });
         viewBuilds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this,CarListActivity.class));
             }
         });
-        build.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, BuildCarAcitivty.class));
-            }
-        });
-        displayUserName();
 
-        maps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MapsActivity.class));
-            }
-        });
+
+
+
+
+
+        greeting = (TextView) findViewById(R.id.tv_user_name);
+//        Button maps = (Button) findViewById(R.id.find_dealer);
+//        Button build = (Button) findViewById(R.id.btn_build_car);
+//        Button viewBuilds = (Button) findViewById(R.id.btn_view_builds);
+//        Button getNfc = (Button) findViewById(R.id.getnfc);
+//        Button aiChat = (Button) findViewById(R.id.ai_chat);
+//        aiChat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            }
+//        });
+//        getNfc.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                //startActivity(new Intent(MainActivity.this, Nfc.class));
+//            }
+//        });
+//
+//        viewBuilds.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//        build.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, BuildCarAcitivty.class));
+//            }
+//        });
+            displayUserName();
+//
+//        maps.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            }
+//        });
         Button signOut = (Button) findViewById(R.id.btn_sign_out);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
