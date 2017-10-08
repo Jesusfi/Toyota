@@ -38,6 +38,7 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -272,6 +273,7 @@ public class LoginActivity extends AppCompatActivity  {
                             saveUserInformationGoogle();
                             Toast.makeText(LoginActivity.this,user.getDisplayName(),Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                            finish();
                          //   updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -308,8 +310,8 @@ public class LoginActivity extends AppCompatActivity  {
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
+        if (TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+            mPasswordView.setError("Password Error");
             focusView = mPasswordView;
             cancel = true;
         }

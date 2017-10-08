@@ -27,7 +27,7 @@ public class CarListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+       // getSupportActionBar().setTitle("View Builds");
         setContentView(R.layout.activity_car_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

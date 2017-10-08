@@ -53,6 +53,7 @@ caImage.setImageResource(color);
             public void onClick(View view) {
                 ((Nfc)getContext()).saveCar(car);
                 ((Nfc)getContext()).startActivity(new Intent(getContext(), CarListActivity.class));
+                ((Nfc)getContext()).finish();
                 dismiss();
             }
         });

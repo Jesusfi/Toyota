@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Toyota</string>
+    <string name="app_name">Taps</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

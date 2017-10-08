@@ -12,6 +12,14 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Awesome Build Received"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="2dp"/>
             <ImageView
                 android:id="@+id/imageView_for_car_received"
                 android:layout_width="match_parent"
@@ -21,15 +29,21 @@
                 android:id="@+id/tv_name_car_received"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:gravity="center"
                 android:text="car name goes here"/>
             <TextView
                 android:id="@+id/tv_engine_car_received"
                 android:layout_width="match_parent"
+                android:gravity="center"
+                android:padding="2dp"
                 android:layout_height="wrap_content"
                 android:text="car engine goes here "/>
             <TextView
                 android:id="@+id/tvf_package_car_received"
                 android:layout_width="match_parent"
+                android:gravity="center"
+                android:padding="2dp"
                 android:layout_height="wrap_content"
                 android:text="Car package goes here "/>
             <LinearLayout

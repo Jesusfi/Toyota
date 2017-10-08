@@ -1,5 +1,6 @@
 package com.example.jesusizquierdo.toyota;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -75,13 +76,35 @@ public class CarSpecificsActivity extends AppCompatActivity {
                 carModelName = "Camry";
                 carView.setImageResource(R.drawable.carle);
                 engines.add(new Engine("2.5L 4-Cyl. Hybrid Enigne", "Electronically controlled Continuously Variavle Transmission", "2000 Hybrid system net hp (149kW", "Dual VVT-i"));
+                engines.add(new Engine("DEMO Hybrid Enigne", "DEMO controlled Continuously Variavle Transmission", "DEMO Hybrid system net hp (149kW", "Dual VVT-i"));
+                engines.add(new Engine("DEMO Hybrid Enigne", "DEMO controlled Continuously Variavle Transmission", "DEMO Hybrid system net hp (149kW", "Dual VVT-i"));
+                engines.add(new Engine("DEMO Hybrid Enigne", "DEMO controlled Continuously Variavle Transmission", "DEMO Hybrid system net hp (149kW", "Dual VVT-i"));
+                engines.add(new Engine("DEMO Hybrid Enigne", "DEMO controlled Continuously Variavle Transmission", "DEMO Hybrid system net hp (149kW", "Dual VVT-i"));
+
                 color.add(R.drawable.camery_black);
                 color.add(R.drawable.camery_red);
                 color.add(R.drawable.camery_blue);
+
                 packages.add(new Package("Entune™ Premium Audio with Integrated Navigation","2,290","Power tilt/slide moonroof"));
+                packages.add(new Package("DEMO™ Premium Audio with Integrated Navigation","2,000","DEMO tilt/slide moonroof"));
+                packages.add(new Package("DEMO™ Premium Audio with Integrated Navigation","2,000","DEMO tilt/slide moonroof"));
+                packages.add(new Package("DEMO™ Premium Audio with Integrated Navigation","2,000","DEMO tilt/slide moonroof"));
                 break;
             case 2:
-                Toast.makeText(CarSpecificsActivity.this, "Not done yet", Toast.LENGTH_SHORT).show();
+                carModelName = "CH-R";
+                carView.setImageResource(R.drawable.white_ch_r);
+                engines.add(new Engine("2.5L 4-Cyl. Hybrid Enigne", "Electronically controlled Continuously Variavle Transmission", "2000 Hybrid system net hp (149kW", "Dual VVT-i"));
+                engines.add(new Engine("DEMO Hybrid Enigne", "DEMO controlled Continuously Variavle Transmission", "DEMO Hybrid system net hp (149kW", "Dual VVT-i"));
+                engines.add(new Engine("DEMO Hybrid Enigne", "DEMO controlled Continuously Variavle Transmission", "DEMO Hybrid system net hp (149kW", "Dual VVT-i"));
+                engines.add(new Engine("DEMO Hybrid Enigne", "DEMO controlled Continuously Variavle Transmission", "DEMO Hybrid system net hp (149kW", "Dual VVT-i"));
+                engines.add(new Engine("DEMO Hybrid Enigne", "DEMO controlled Continuously Variavle Transmission", "DEMO Hybrid system net hp (149kW", "Dual VVT-i"));
+                color.add(R.drawable.aqua_ch_r);
+                color.add(R.drawable.red_ch_r);
+                color.add(R.drawable.black_ch_r);
+                packages.add(new Package("Entune™ Premium Audio with Integrated Navigation","2,290","Power tilt/slide moonroof"));
+                packages.add(new Package("DEMO™ Premium Audio with Integrated Navigation","2,000","DEMO tilt/slide moonroof"));
+                packages.add(new Package("DEMO™ Premium Audio with Integrated Navigation","2,000","DEMO tilt/slide moonroof"));
+                packages.add(new Package("DEMO™ Premium Audio with Integrated Navigation","2,000","DEMO tilt/slide moonroof"));
                 break;
 
         }
@@ -113,6 +136,8 @@ public class CarSpecificsActivity extends AppCompatActivity {
                     Toast.makeText(CarSpecificsActivity.this, "Everything looks good", Toast.LENGTH_SHORT).show();
                     Car car = new Car(carModelName,engineNameGlobal,colorNumberGlobal,packageNameGlobal);
                     saveCar(car);
+                    startActivity(new Intent(CarSpecificsActivity.this,CarListActivity.class));
+                    finish();
                 }
             }
         });
