@@ -36,8 +36,10 @@ public class SmsReceiver extends BroadcastReceiver {
 
             if (address != null) {
                 // manage message and address ...
+                if(address.contains("7046122387")){
+                    chat.getSms(str);
+                }
 
-                chat.getSms(str);
             }
 
         }

@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 SimpleProfile user = dataSnapshot.getValue(SimpleProfile.class);
-                greeting.setText("Hello " + user.getName());
+                greeting.setText("Hello, " + user.getName()+" how are you?");
             }
 
             @Override
