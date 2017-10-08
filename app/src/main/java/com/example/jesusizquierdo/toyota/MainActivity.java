@@ -32,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
         Button build = (Button) findViewById(R.id.btn_build_car);
         Button viewBuilds = (Button) findViewById(R.id.btn_view_builds);
         Button getNfc = (Button) findViewById(R.id.getnfc);
+        Button aiChat = (Button) findViewById(R.id.ai_chat);
+        aiChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,Chat.class));
+            }
+        });
         getNfc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

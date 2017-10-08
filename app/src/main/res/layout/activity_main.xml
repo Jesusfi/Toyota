@@ -43,4 +43,9 @@
         android:layout_height="wrap_content"
         android:text="get nfc"
         android:id="@+id/getnfc"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ai chat"
+        android:id="@+id/ai_chat"/>
 </LinearLayout>
