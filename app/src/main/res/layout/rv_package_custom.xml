@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_rv_named"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="This is the package name "/>
+            <TextView
+                android:id="@+id/tv_rv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="this is the price for the package"/>
+            <TextView
+                android:id="@+id/tv_rv_package"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="this is the despription for the package"/>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

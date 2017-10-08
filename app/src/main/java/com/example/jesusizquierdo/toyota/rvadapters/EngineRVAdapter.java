@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.jesusizquierdo.toyota.CarSpecificsActivity;
 import com.example.jesusizquierdo.toyota.R;
 import com.example.jesusizquierdo.toyota.classes.Engine;
 
@@ -55,6 +56,14 @@ public class EngineRVAdapter extends RecyclerView.Adapter<EngineRVAdapter.ViewHo
             info1 = (TextView) itemView.findViewById(R.id.tv_info1);
             info2 = (TextView) itemView.findViewById(R.id.tv_info2);
             info3 = (TextView) itemView.findViewById(R.id.tv_info3);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Engine engine = engines.get(getAdapterPosition());
+                    ((CarSpecificsActivity)context).setEngine(engine.getName());
+                }
+            });
         }
     }
 }
