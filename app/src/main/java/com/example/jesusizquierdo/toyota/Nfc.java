@@ -30,8 +30,15 @@ public class Nfc extends AppCompatActivity
     private EditText txtBoxAddMessage;
     private TextView txtReceivedMessages;
     private TextView txtMessagesToSend;
+    private TextView sendingIndicator;
 
     NfcAdapter mNfcAdapter;
+
+    String model;
+    String price;
+    String engine;
+    int color; ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,18 +60,31 @@ public class Nfc extends AppCompatActivity
         txtBoxAddMessage = (EditText) findViewById(R.id.txtBoxAddMessage);
         txtMessagesToSend = (TextView) findViewById(R.id.txtMessageToSend);
         txtReceivedMessages = (TextView) findViewById(R.id.txtMessagesReceived);
+        sendingIndicator = (TextView) findViewById(R.id.tv_sending_indicator);
+
         Button btnAddMessage = (Button) findViewById(R.id.buttonAddMessage);
         int send = getIntent().getIntExtra("get",0);
         if(send ==0){
             btnAddMessage.setEnabled(false);
+            btnAddMessage.setText("recieve only");
+            sendingIndicator.setText("RECEIVING CAR BUILD");
         }else{
             btnAddMessage.setEnabled(true);
+            btnAddMessage.setText("send");
+            sendingIndicator.setText("CLICK TO SEND CAR BUILD");
+
+            model = getIntent().getStringExtra("model");
+            price = getIntent().getStringExtra("price");
+            engine = getIntent().getStringExtra("engine");
+            color = getIntent().getIntExtra("color",0);
+
+
         }
         btnAddMessage.setText("Add Message");
         updateTextViews();
     }
     public void addMessage(View view) {
-        String newMessage = txtBoxAddMessage.getText().toString();
+        String newMessage = model +","+ price+","+engine+"," + color;
         messagesToSendArray.add(newMessage);
 
         txtBoxAddMessage.setText(null);

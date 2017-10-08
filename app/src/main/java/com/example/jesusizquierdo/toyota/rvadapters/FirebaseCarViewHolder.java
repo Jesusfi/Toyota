@@ -28,11 +28,11 @@ public class FirebaseCarViewHolder extends RecyclerView.ViewHolder implements Vi
         this.mView = itemView;
         itemView.setOnClickListener(this);
     }
-    public void bindCar(Car car){
-        TextView name = (TextView) itemView.findViewById(R.id.tv_name_firebaseui);
-        TextView engine = (TextView) itemView.findViewById(R.id.tv_engine_firebaseui);
-        TextView carPackage = (TextView) itemView.findViewById(R.id.tvf_package_firebaseui);
-        ImageView carImage = (ImageView) itemView.findViewById(R.id.imageView_for_firebaseui);
+    public void bindCar(final Car car){
+        final TextView name = (TextView) itemView.findViewById(R.id.tv_name_firebaseui);
+        final TextView engine = (TextView) itemView.findViewById(R.id.tv_engine_firebaseui);
+        final TextView carPackage = (TextView) itemView.findViewById(R.id.tvf_package_firebaseui);
+        final ImageView carImage = (ImageView) itemView.findViewById(R.id.imageView_for_firebaseui);
         Button shareNFC = (Button) itemView.findViewById(R.id.btn_share_nfc);
 
         shareNFC.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +40,13 @@ public class FirebaseCarViewHolder extends RecyclerView.ViewHolder implements Vi
             public void onClick(View view) {
                 Intent intent = new Intent(mContext,Nfc.class);
                 intent.putExtra("get", 1);
+
+                intent.putExtra("model", car.getModel());
+                intent.putExtra("engine", car.getConfiguration());
+                intent.putExtra("package",car.getCarPackage());
+                intent.putExtra("color", car.getColor());
+
+
                 ((CarListActivity)mContext).startActivity(intent);
                 //((CarListActivity)mContext).startActivity(new Intent(mContext, Nfc.class));
             }
