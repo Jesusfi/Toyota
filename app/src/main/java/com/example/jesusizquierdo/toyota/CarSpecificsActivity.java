@@ -139,5 +139,6 @@ public class CarSpecificsActivity extends AppCompatActivity {
         reference.setValue(car);
         //this is a change real quick
         // change database
+        //nfc added
     }
 }
