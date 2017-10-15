@@ -132,7 +132,7 @@ public class LoginActivity extends AppCompatActivity  {
                 // ...
             }
         });
-
+// final
 
         //set up mAuth
         mAuth = FirebaseAuth.getInstance();
